@@ -1,18 +1,15 @@
 <template>
   <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'pa-5'}`">
-    <Biography />
-    <Profile />
+    <Project-details />
   </v-container>
 </template>
 
 <script>
-import Biography from '@/components/Biography'
-import Profile from '@/components/Profile'
+import ProjectDetails from '../components/ProjectDetails'
 
 export default {
   components: {
-    Biography,
-    Profile
+    ProjectDetails
   }
 }
 </script>

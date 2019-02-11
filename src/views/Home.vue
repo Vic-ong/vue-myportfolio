@@ -1,13 +1,25 @@
 <template>
-  <HelloWorld />
+  <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'pa-5'}`">
+    <Projects />
+  </v-container>
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld'
+import { mapGetters, mapActions } from 'vuex'
+
+import Projects from '../components/Projects'
 
 export default {
   components: {
-    HelloWorld
+    Projects
+  },
+  created () {
+    this.getUsers('vic-ong-2019')
+  },
+  methods: {
+    ...mapActions('users', {
+      getUsers: 'getUsers'
+    })
   }
 }
 </script>
