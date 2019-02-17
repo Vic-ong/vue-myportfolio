@@ -1,5 +1,5 @@
 <template>
-  <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'pa-5'}`">
+  <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'main-container'}`">
     <Project-details />
   </v-container>
 </template>

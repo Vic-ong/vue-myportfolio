@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <div class="white">
     <!-- TABLET RESOLUTION AND ABOVE -->
     <v-toolbar v-if="!$vuetify.breakpoint.xs"
       flat app scroll-off-screen
@@ -40,8 +41,9 @@
     </app-mobile>
 
     <v-content>
-      <router-view/>
+      <router-view />
     </v-content>
+    </div>
   </v-app>
 </template>
 
@@ -71,5 +73,10 @@ a {
 }
 .v-btn {
   text-transform: none;
+}
+.main-container {
+  padding-top: 100px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 </style>
