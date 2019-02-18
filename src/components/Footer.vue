@@ -29,18 +29,18 @@
 
 <script>
 export default {
-    data() {
-      return {
-        medias: [
-          { name: 'LinkedIn', icon: 'fab fa-linkedin', color: 'blue', link: 'https://linkedin.com/in/vickong', size: 25 },
-          { name: 'GitHub', icon: 'fab fa-github', color: 'black', link: 'https://github.com/Vic-ong', size: 25 },
-          { name: 'Email', icon: 'fa-envelope', color: 'orange', link: 'mailto:vickyocc53@gmail.com', size: 23 }
-        ]
-      }
-    },
-    computed: {},
-    methods: {
+  data () {
+    return {
+      medias: [
+        { name: 'LinkedIn', icon: 'fab fa-linkedin', color: 'blue', link: 'https://linkedin.com/in/vickong', size: 25 },
+        { name: 'GitHub', icon: 'fab fa-github', color: 'black', link: 'https://github.com/Vic-ong', size: 25 },
+        { name: 'Email', icon: 'fa-envelope', color: 'orange', link: 'mailto:vickyocc53@gmail.com', size: 23 }
+      ]
     }
+  },
+  computed: {},
+  methods: {
+  }
 }
 </script>
 

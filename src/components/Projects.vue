@@ -13,7 +13,6 @@
           </v-flex>
           <v-flex xs6>
             <v-card flat class="transparent ma-5">
-              <v-icon class="content-icon">{{ project.icon }}</v-icon>
               <h1>{{ project.title }}</h1>
             </v-card>
           </v-flex>
@@ -31,8 +30,13 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'projects',
+  created () {
+    this.getProjects()
+  },
   data () {
     return {
       cardAttr: {
@@ -44,13 +48,21 @@ export default {
     }
   },
   computed: {
-    projects() {
+    ...mapGetters('projects', {
+      projectsall: 'projects'
+    }),
+    projects () {
       return [
         { title: 'Health Care Facility Licensure System', icon: 'fa-laptop-medical', imgPath: 'https://image.freepik.com/free-vector/app-development-concept-with-flat-design_23-2147846297.jpg' },
         { title: 'Student Success Predictor', icon: 'fa-graduation-cap', imgPath: 'https://image.freepik.com/free-vector/app-development-concept-with-flat-design_23-2147857787.jpg' },
         { title: 'Resources Management Tool', icon: 'fa-rocket', imgPath: 'https://image.freepik.com/free-vector/app-development-concept-with-flat-design_23-2147855146.jpg' }
       ]
     }
+  },
+  methods: {
+    ...mapActions('projects', {
+      getProjects: 'getProjects'
+    })
   }
 }
 </script>

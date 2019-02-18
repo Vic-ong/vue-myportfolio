@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import Introduction from '@/components/Introduction'
 import Footer from '@/components/Footer'
 import Projects from '@/components/Projects'
@@ -17,17 +16,6 @@ export default {
     Introduction,
     Projects,
     Footer
-  },
-  created () {
-    this.getUsers('vic-ong-2019')
-  },
-  computed: {
-  },
-  methods: {
-    ...mapActions('users', {
-      getUsers: 'getUsers'
-    })
   }
 }
 </script>
-

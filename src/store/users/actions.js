@@ -5,12 +5,13 @@ const docRef = db.collection(collection)
 
 export const getUsers = (store, param) => {
   if (!param) {
+    store.commit('CLEAR_USERS')
     // get all users
     return docRef.get().then(docs => {
       if (!docs.empty) {
         docs.forEach(doc => {
           if (doc.exists) {
-            console.log(doc.data())
+            store.commit('STORE_USERS', doc.data())
           } else {
             console.error('Unable to find document!')
           }
@@ -25,7 +26,7 @@ export const getUsers = (store, param) => {
     // get specific user
     return docRef.doc(param).get().then(doc => {
       if (doc.exists) {
-        console.log(doc.data())
+        store.commit('STORE_USER', doc.data())
       } else {
         console.error('Unable to find document!')
       }

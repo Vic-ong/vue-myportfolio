@@ -5,21 +5,23 @@ import * as mutations from './mutations'
 const state = {
   user: {
     name: {
-      first: null,
-      last: null,
-      middle: null
+      first: '',
+      last: '',
+      middle: ''
     },
     address: {
-      street_1: null,
-      street_2: null,
-      city: null,
+      street_1: '',
+      street_2: '',
+      city: '',
       state: {
-        abbreviation: null,
-        name: null
+        abbreviation: '',
+        name: ''
       },
-      country: null
+      country: ''
     },
-    date_of_birth: null
+    date_of_birth: '',
+    profile_pic: '',
+    resume_pdf: ''
   },
   users: []
 }

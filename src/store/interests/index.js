@@ -3,11 +3,9 @@ import * as getters from './getters'
 import * as mutations from './mutations'
 
 const state = {
-  project: {
-    name: '',
-    score: null
-  },
-  projects: []
+  hobbies: [],
+  goals: [],
+  music: []
 }
 
 export default {

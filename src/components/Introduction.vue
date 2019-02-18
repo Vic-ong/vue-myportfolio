@@ -2,9 +2,9 @@
   <div id="intro">
     <div class="intro-container">
       <p class="display-4 intro-title">Articulated Design.</p>
-      <p class="intro-caption">Hello! Welcome to my portfolio. I'm Vic Ong, a software engineer with {{ yearsOfExp }} years of industry experience. A majority of my work are on the frontend and user experience development but I dabbled in backend to as well - to paint the entire picture. Over the years, I've designed and built various applications for clients in the government, education, retail and banking industries.</p>
+      <p class="intro-caption">Hello! Welcome to my portfolio. I'm Vic Ong, a software engineer with {{ yearsOfExp }} years of industry experience. A majority of my work are on the frontend and user experience development but I've dabbled in backend to as well - to paint the entire picture. Over the years, I've designed and built various applications for clients in the government, education, retail and banking industries. Check out my projects for more information!</p>
       <div class="intro-next">
-        <v-icon medium color="grey lighten-1">fa-arrow-down</v-icon>
+        <v-icon medium color="grey lighten-1" @click="$vuetify.goTo(target, options)">fa-arrow-down</v-icon>
       </div>
     </div>
   </div>
@@ -12,15 +12,26 @@
 
 <script>
 export default {
-  data() {
+  name: 'intro',
+  data () {
     return {}
   },
   computed: {
-    yearsOfExp() {
+    yearsOfExp () {
       const today = new Date()
       const curYear = today.getFullYear()
       const curMonth = today.getMonth() + 1
-      return ((curYear + curMonth/12) - 2016).toFixed(2)
+      return ((curYear + curMonth / 12) - 2016).toFixed(2)
+    },
+    target () {
+      return 820
+    },
+    options () {
+      return {
+        duration: 500,
+        offset: 0,
+        easing: 'easeInOutCubic'
+      }
     }
   }
 }
@@ -41,7 +52,7 @@ export default {
   background-clip: text;
   color: black;
   -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
+  /* text-fill-color: transparent; */
   transition: color 500ms linear;
 }
 .intro-container:hover .intro-title{
@@ -59,5 +70,23 @@ export default {
 }
 .intro-next {
   text-align: center;
+  animation: bounce 0.5s infinite alternate;
+  -webkit-animation: bounce 0.5s infinite alternate;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-15px);
+  }
+}
+@-webkit-keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-15px);
+  }
 }
 </style>
