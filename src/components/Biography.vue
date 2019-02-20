@@ -3,6 +3,7 @@
     <div class="bio-profilepic-container">
       <v-img contain
         :src="myprofile.profile_pic"
+        :lazy-src="myprofile.profile_pic_lowres"
         :height="picAttr.height"
         :class="picAttr.bgColor"
         :position="picAttr.position"
@@ -10,7 +11,7 @@
         <div class="bio-caption-container bio-caption-offset">
           <p class="bio-title">A Passion to Create Meaningful Systems</p>
         </div>
-        <v-icon medium class="bio-title-icon bio-caption-offset">fa-bolt</v-icon>
+        <!-- <v-icon medium class="bio-title-icon bio-caption-offset">fa-bolt</v-icon> -->
         <div class="bio-about-container bio-caption-offset">
           <p class="bio-about">
             I am an interdisciplinary designer currently based in Honolulu and Orlando—while I do hope to expand to other cities as well!
@@ -25,19 +26,26 @@
             skills to develop better and more robust applications and to design with purpose—and I still continue to learn
             and grow my knowledge.
           </p>
-          <div>
-            <v-layout row>
-              <v-spacer></v-spacer>
-              <a :href="myprofile.resume_pdf" target="_blank">
-                <v-btn round depressed color="primary">
-                  Resume
-                </v-btn>
-              </a>
-              <v-spacer></v-spacer>
-            </v-layout>
-          </div>
         </div>
       </v-img>
+    </div>
+    <div class="contacts-container">
+      <v-flex xs12>
+        <v-layout row>
+          <v-flex xs6 class="contact-container primary">
+            <a :href="myprofile.resume_pdf" target="_blank">
+              <p class="contact-title white--text">See Resume</p>
+              <v-icon class="contact-icon-link" color="grey lighten-2">fa-arrow-right</v-icon>
+            </a>
+          </v-flex>
+          <v-flex xs6 class="contact-container grey lighten-2">
+            <p class="contact-title">Email Me</p>
+            <a :href="myprofile.resume_pdf" target="_blank">
+              <v-icon class="contact-icon-link" color="grey lighten-2">fa-arrow-right</v-icon>
+            </a>
+          </v-flex>
+        </v-layout>
+      </v-flex>
     </div>
     <div style="padding-top: 60px; padding-bottom: 50px;"><v-divider></v-divider></div>
     <div>
@@ -64,12 +72,14 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'biography',
   created () {
-    this.getUsers('vic-ong-2019')
+    if (!this.myprofile.fname) {
+      this.getUsers('vic-ong-2019')
+    }
     this.getInterests()
   },
   data () {
     return {
-      picAttr: { height: '700px', bgColor: 'transparent', position: 'left' },
+      picAttr: { height: '618px', bgColor: 'transparent', position: 'left' },
       bio: {
         healthcare: 'https://www.ideo.com/question/how-might-we-transform-institutionalized-care-into-individualized-care',
         safety: 'https://www.youtube.com/watch?time_continue=106&v=aEBi4OpXU4Q',
@@ -137,13 +147,8 @@ export default {
 .bio-caption-offset {
   position: relative;
   top: 30px;
-  left: 400px;
-  width: 500px;
-}
-.bio-title-icon {
-  color: #EDD826;
-  animation: bounce 0.5s infinite alternate;
-  -webkit-animation: bounce 0.5s infinite alternate;
+  left: 330px;
+  width: 550px;
 }
 .bio-caption-container {
   background-color: black;
@@ -152,16 +157,32 @@ export default {
   padding-bottom: 10px;
 }
 .bio-about-container {
-  left: 500px;
-  width: 400px;
+  left: 450px;
+  width: 460px;
   padding: 30px;
-  padding-top: 10px;
+  padding-top: 25px;
 }
 .bio-about {
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.8;
   text-align: justify;
   text-justify: inter-word;
+}
+.contacts-container {
+  margin-top: 100px;
+}
+.contact-container {
+  padding: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.contact-title {
+  font-size: 24px;
+  font-weight: 400;
+}
+.contact-container:hover .contact-icon-link{
+  animation: bounce 0.6s infinite alternate;
+  -webkit-animation: bounce 0.6s infinite alternate;
 }
 .bio-interest-title {
   font-size: 14px;
@@ -172,18 +193,18 @@ export default {
 }
 @keyframes bounce {
   from {
-    transform: translateY(5px);
+    transform: translateX(5px);
   }
   to {
-    transform: translateY(-10px);
+    transform: translateX(-10px);
   }
 }
 @-webkit-keyframes bounce {
   from {
-    transform: translateY(5px);
+    transform: translateX(5px);
   }
   to {
-    transform: translateY(-10px);
+    transform: translateX(-10px);
   }
 }
 </style>

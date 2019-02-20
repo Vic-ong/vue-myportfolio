@@ -1,30 +1,59 @@
 <template>
   <div id="projects">
-    <div v-for="(project, index) in projects" v-bind:key="index"
+    <div class="opening-text grey--text text--lighten-1">
+      How Might We...
+    </div>
+    <div v-for="(project, index) in projectsTop3" v-bind:key="index"
       class="card-container grey lighten-4">
-      <v-flex xs12>
+      <v-hover>
+      <v-flex xs12 slot-scope="{ hover }">
         <v-layout row>
           <v-flex xs6 v-if="index%2 === 0">
-            <v-img
-              :src="project.imgPath"
-              :height="cardAttr.img.height"
-              :class="cardAttr.img.bgColor"
-            ></v-img>
+            <router-link :to="{ name: 'ProjectView', params: { id: project.id } }">
+              <v-img
+                :src="project.thumbnail_image"
+                :height="cardAttr.img.height"
+                :class="cardAttr.img.bgColor"
+              >
+                <v-expand-transition>
+                  <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out primary v-card--reveal white--text"
+                    style="height: 100%;"
+                  >
+                    see project
+                  </div>
+                </v-expand-transition>
+              </v-img>
+            </router-link>
           </v-flex>
           <v-flex xs6>
             <v-card flat class="transparent ma-5">
-              <h1>{{ project.title }}</h1>
+              <p class="project-type">CASE STUDY<span class="project-sector">{{ project.sector }}</span></p>
+              <p class="project-name">{{ project.name }}</p>
+              <p class="project-caption">{{ project.caption }}</p>
             </v-card>
           </v-flex>
           <v-flex xs6 v-if="index%2 !== 0">
             <v-img
-              :src="project.imgPath"
+              :src="project.thumbnail_image"
               :height="cardAttr.img.height"
               :class="cardAttr.img.bgColor"
-            ></v-img>
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out primary v-card--reveal white--text"
+                  style="height: 100%;"
+                >
+                  see project
+                </div>
+              </v-expand-transition>
+            </v-img>
           </v-flex>
         </v-layout>
       </v-flex>
+      </v-hover>
     </div>
   </div>
 </template>
@@ -35,7 +64,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'projects',
   created () {
-    this.getProjects()
+    if (this.projects.length === 0) {
+      this.getProjects()
+    }
   },
   data () {
     return {
@@ -49,15 +80,8 @@ export default {
   },
   computed: {
     ...mapGetters('projects', {
-      projectsall: 'projects'
-    }),
-    projects () {
-      return [
-        { title: 'Health Care Facility Licensure System', icon: 'fa-laptop-medical', imgPath: 'https://image.freepik.com/free-vector/app-development-concept-with-flat-design_23-2147846297.jpg' },
-        { title: 'Student Success Predictor', icon: 'fa-graduation-cap', imgPath: 'https://image.freepik.com/free-vector/app-development-concept-with-flat-design_23-2147857787.jpg' },
-        { title: 'Resources Management Tool', icon: 'fa-rocket', imgPath: 'https://image.freepik.com/free-vector/app-development-concept-with-flat-design_23-2147855146.jpg' }
-      ]
-    }
+      projectsTop3: 'projectsTop3'
+    })
   },
   methods: {
     ...mapActions('projects', {
@@ -67,8 +91,41 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.opening-text {
+  text-align: center;
+  font-family: 'Handlee', cursive;
+  font-size: 50px;
+}
 .content-icon {
   margin-bottom: 30px;
+}
+.project-type {
+  font-size: 12px;
+  font-weight: 700;
+  color: grey;
+}
+.project-sector {
+  color: black;
+  padding-left:10px;
+}
+.project-name {
+  font-size: 30px;
+  font-weight: 700;
+  padding-top: 40px;
+}
+.project-caption {
+  font-size: 18px;
+  line-height: 1.6;
+  padding-top: 15px;
+}
+.v-card--reveal {
+  font-size: 50px;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  opacity: .5;
+  position: absolute;
+  width: 100%;
 }
 </style>

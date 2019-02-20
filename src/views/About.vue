@@ -20,6 +20,6 @@ export default {
 <style>
 .about-page-offset {
   position: relative;
-  top: -100px;
+  top: -20px;
 }
 </style>

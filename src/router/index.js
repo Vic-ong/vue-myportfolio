@@ -9,6 +9,9 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  },
   routes: [
     {
       // Homepage
@@ -23,12 +26,10 @@ export default new Router({
       component: About
     },
     {
-      path: '/project/:project_id',
+      path: '/projects=:id',
       name: 'ProjectView',
       component: ProjectView,
-      props: route => {
-        return { project_id: route.params.project_id.toString() }
-      }
+      props: true
     }
   ]
 })

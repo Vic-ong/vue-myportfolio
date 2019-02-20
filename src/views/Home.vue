@@ -1,5 +1,5 @@
 <template>
-  <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'main-container'}`">
+  <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'main-container'}`" class="homepage-title">
     <Introduction />
     <Projects />
     <Footer />
@@ -19,3 +19,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.homepage-title {
+  padding-top: 100px;
+}
+</style>

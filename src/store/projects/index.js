@@ -5,7 +5,18 @@ import * as mutations from './mutations'
 const state = {
   project: {
     name: '',
-    score: null
+    caption: '',
+    score: null,
+    thumbnail_image: '',
+    sector: '',
+    challenge: '',
+    outcome: '',
+    timeline: '',
+    stack: {
+      app: [],
+      devops: [],
+      tools: []
+    }
   },
   projects: []
 }

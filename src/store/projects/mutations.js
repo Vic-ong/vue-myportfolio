@@ -1,11 +1,11 @@
 export const STORE_PROJECTS = (state, payload) => {
-  state.users.push(payload)
+  state.projects.push(payload)
 }
 
 export const STORE_PROJECT = (state, payload) => {
-  state.user = payload
+  state.project = payload
 }
 
 export const CLEAR_PROJECTS = (state) => {
-  state.users = []
+  state.projects = []
 }
