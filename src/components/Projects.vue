@@ -87,7 +87,7 @@ export default {
     ...mapGetters('projects', {
       projectsTopFunc: 'projectsTop'
     }),
-    projectsTop() {
+    projectsTop () {
       return this.projectsTopFunc(this.numberOfProjects)
     }
   },

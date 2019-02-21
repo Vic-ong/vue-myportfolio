@@ -56,7 +56,9 @@ export default {
     currentYear () {
       const today = new Date()
       return today.getFullYear()
-    },
+    }
+  },
+  method: {
     containerStyle () {
       if (this.type === 'footer') {
         return {

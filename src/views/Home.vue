@@ -17,7 +17,7 @@ export default {
     Projects,
     Contact
   },
-  data() {
+  data () {
     return {
       numberOfProjects: 4
     }

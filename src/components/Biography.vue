@@ -65,13 +65,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Contact from './Contact'
 
 export default {
   name: 'biography',
-  components: {
-    Contact
-  },
   created () {
     if (!this.myprofile.fname) {
       this.getUsers('vic-ong-2019')
