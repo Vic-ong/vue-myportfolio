@@ -38,9 +38,7 @@ export default {
     id: String
   },
   created () {
-    if (!this.project.id) {
-      this.getProjects(this.id)
-    }
+    this.getProjects(this.id)
   },
   data () {
     return {

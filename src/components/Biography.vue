@@ -27,28 +27,25 @@
             and grow my knowledge.
           </p>
         </div>
+        <div class="contacts-container">
+          <v-flex xs12>
+            <v-layout row>
+              <v-spacer></v-spacer>
+              <v-btn round depressed class="primary resume-btn" @click="showResume">
+                <!-- <v-icon left small class="resume-icon-link" color="yellow">fa-star</v-icon> -->
+                See Resume
+              </v-btn>
+              <v-btn round depressed class="white contact-btn" @click="showEmail">
+                <!-- <v-icon left small class="contact-icon-link" color="orange">fa-envelope</v-icon> -->
+                Contact Me
+              </v-btn>
+              <v-spacer></v-spacer>
+            </v-layout>
+          </v-flex>
+        </div>
       </v-img>
     </div>
-    <div class="contacts-container">
-      <v-flex xs12>
-        <v-layout row>
-          <v-flex xs6 class="contact-container primary">
-            <a :href="myprofile.resume_pdf" target="_blank">
-              <p class="contact-title white--text">See Resume</p>
-              <v-icon class="contact-icon-link" color="grey lighten-2">fa-arrow-right</v-icon>
-            </a>
-          </v-flex>
-          <v-flex xs6 class="contact-container grey lighten-2">
-            <p class="contact-title">Email Me</p>
-            <a :href="myprofile.resume_pdf" target="_blank">
-              <v-icon class="contact-icon-link" color="grey lighten-2">fa-arrow-right</v-icon>
-            </a>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </div>
-    <div style="padding-top: 60px; padding-bottom: 50px;"><v-divider></v-divider></div>
-    <div>
+    <div style="padding-top: 120px; padding-bottom: 50px;">
       <v-flex>
         <v-layout row wrap>
           <v-flex xs4 v-for="(interest, index) in interests" v-bind:key="index">
@@ -68,9 +65,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Contact from './Contact'
 
 export default {
   name: 'biography',
+  components: {
+    Contact
+  },
   created () {
     if (!this.myprofile.fname) {
       this.getUsers('vic-ong-2019')
@@ -79,7 +80,7 @@ export default {
   },
   data () {
     return {
-      picAttr: { height: '618px', bgColor: 'transparent', position: 'left' },
+      picAttr: { height: '600px', bgColor: 'transparent', position: 'left' },
       bio: {
         healthcare: 'https://www.ideo.com/question/how-might-we-transform-institutionalized-care-into-individualized-care',
         safety: 'https://www.youtube.com/watch?time_continue=106&v=aEBi4OpXU4Q',
@@ -126,6 +127,12 @@ export default {
     }),
     list (type) {
       return this[type]
+    },
+    showResume () {
+      window.open(this.myprofile.resume_pdf)
+    },
+    showEmail () {
+      window.open(`mailto:${this.myprofile.email}`)
     }
   }
 }
@@ -152,7 +159,7 @@ export default {
 }
 .bio-caption-container {
   background-color: black;
-  padding: 30px;
+  padding: 45px;
   padding-top: 15px;
   padding-bottom: 10px;
 }
@@ -169,18 +176,27 @@ export default {
   text-justify: inter-word;
 }
 .contacts-container {
-  margin-top: 100px;
+  position: relative;
+  top: -80px;
+  width: 430px;
 }
-.contact-container {
-  padding: 50px;
-  padding-left: 100px;
-  padding-right: 100px;
+.resume-btn {
+  opacity: 0.7;
 }
-.contact-title {
-  font-size: 24px;
-  font-weight: 400;
+.resume-btn:hover {
+  opacity: 1;
 }
-.contact-container:hover .contact-icon-link{
+.contact-btn {
+  opacity: 0.7;
+}
+.contact-btn:hover {
+  opacity: 1;
+}
+.resume-btn:hover .resume-icon-link{
+  animation: bounce 0.6s infinite alternate;
+  -webkit-animation: bounce 0.6s infinite alternate;
+}
+.contact-btn:hover .contact-icon-link{
   animation: bounce 0.6s infinite alternate;
   -webkit-animation: bounce 0.6s infinite alternate;
 }
@@ -193,18 +209,18 @@ export default {
 }
 @keyframes bounce {
   from {
-    transform: translateX(5px);
+    transform: translateY(3px);
   }
   to {
-    transform: translateX(-10px);
+    transform: translateY(-15px);
   }
 }
 @-webkit-keyframes bounce {
   from {
-    transform: translateX(5px);
+    transform: translateY(3px);
   }
   to {
-    transform: translateX(-10px);
+    transform: translateY(-15px);
   }
 }
 </style>

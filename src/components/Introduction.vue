@@ -2,7 +2,7 @@
   <div id="intro">
     <div class="intro-container">
       <p class="display-4 intro-title">Articulated Design.</p>
-      <p class="intro-caption">Hello! Welcome to my portfolio. I'm Vic Ong, a software engineer with {{ yearsOfExp }} years of industry experience. A majority of my work are on the frontend and user experience development but I've dabbled in backend to as well - to paint the entire picture. Over the years, I've designed and built various applications for clients in the government, education, retail and banking industries. Check out my projects for more information!</p>
+      <p class="intro-caption">Hello! Welcome to my portfolio. I'm Vic Ong, a software engineer with {{ yearsOfExp }} years of industry experience. Most of my work revolves around <b>frontend</b> and <b>user experience</b> development but I've dabbled in backend design as well - to paint the entire picture. Over the years, I've designed and built various applications for clients in the government, education, public health and entertainment sectors. Have a look at some of my current and past projects! :)</p>
       <div class="intro-next">
         <v-icon medium color="grey lighten-1" @click="$vuetify.goTo(target, options)">fa-arrow-down</v-icon>
       </div>
@@ -24,7 +24,7 @@ export default {
       return ((curYear + curMonth / 12) - 2016).toFixed(2)
     },
     target () {
-      return 820
+      return 900
     },
     options () {
       return {

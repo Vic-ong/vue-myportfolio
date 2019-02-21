@@ -1,17 +1,17 @@
 <template>
   <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'main-container'}`">
     <Project-details :id="id" />
-    <Footer />
+    <Contact />
   </v-container>
 </template>
 
 <script>
-import Footer from '@/components/Footer'
+import Contact from '@/components/Contact'
 import ProjectDetails from '../components/ProjectDetails'
 
 export default {
   components: {
-    Footer,
+    Contact,
     ProjectDetails
   },
   props: {

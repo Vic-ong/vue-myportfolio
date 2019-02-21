@@ -1,21 +1,26 @@
 <template>
   <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'main-container'}`" class="homepage-title">
     <Introduction />
-    <Projects />
-    <Footer />
+    <Projects :numberOfProjects=numberOfProjects />
+    <Contact />
   </v-container>
 </template>
 
 <script>
 import Introduction from '@/components/Introduction'
-import Footer from '@/components/Footer'
+import Contact from '@/components/Contact'
 import Projects from '@/components/Projects'
 
 export default {
   components: {
     Introduction,
     Projects,
-    Footer
+    Contact
+  },
+  data() {
+    return {
+      numberOfProjects: 4
+    }
   }
 }
 </script>

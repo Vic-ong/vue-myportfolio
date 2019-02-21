@@ -3,7 +3,7 @@
     <div class="opening-text grey--text text--lighten-1">
       How Might We...
     </div>
-    <div v-for="(project, index) in projectsTop3" v-bind:key="index"
+    <div v-for="(project, index) in projectsTop" v-bind:key="index"
       class="card-container grey lighten-4">
       <v-hover>
       <v-flex xs12 slot-scope="{ hover }">
@@ -35,21 +35,23 @@
             </v-card>
           </v-flex>
           <v-flex xs6 v-if="index%2 !== 0">
-            <v-img
-              :src="project.thumbnail_image"
-              :height="cardAttr.img.height"
-              :class="cardAttr.img.bgColor"
-            >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out primary v-card--reveal white--text"
-                  style="height: 100%;"
-                >
-                  see project
-                </div>
-              </v-expand-transition>
-            </v-img>
+            <router-link :to="{ name: 'ProjectView', params: { id: project.id } }">
+              <v-img
+                :src="project.thumbnail_image"
+                :height="cardAttr.img.height"
+                :class="cardAttr.img.bgColor"
+              >
+                <v-expand-transition>
+                  <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out primary v-card--reveal white--text"
+                    style="height: 100%;"
+                  >
+                    see project
+                  </div>
+                </v-expand-transition>
+              </v-img>
+            </router-link>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -63,8 +65,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'projects',
+  props: {
+    numberOfProjects: Number
+  },
   created () {
-    if (this.projects.length === 0) {
+    if (this.projectsTop.length === 0) {
       this.getProjects()
     }
   },
@@ -80,8 +85,11 @@ export default {
   },
   computed: {
     ...mapGetters('projects', {
-      projectsTop3: 'projectsTop3'
-    })
+      projectsTopFunc: 'projectsTop'
+    }),
+    projectsTop() {
+      return this.projectsTopFunc(this.numberOfProjects)
+    }
   },
   methods: {
     ...mapActions('projects', {
@@ -96,6 +104,8 @@ export default {
   text-align: center;
   font-family: 'Handlee', cursive;
   font-size: 50px;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 .content-icon {
   margin-bottom: 30px;

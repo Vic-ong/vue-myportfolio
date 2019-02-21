@@ -1,17 +1,17 @@
 <template>
   <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'main-container'}`" class="about-page-offset">
     <Biography />
-    <Footer />
+    <Contact showDivider type="small" />
   </v-container>
 </template>
 
 <script>
-import Footer from '@/components/Footer'
+import Contact from '@/components/Contact'
 import Biography from '@/components/Biography'
 
 export default {
   components: {
-    Footer,
+    Contact,
     Biography
   }
 }
