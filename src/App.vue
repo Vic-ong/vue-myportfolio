@@ -10,12 +10,29 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import NavigationBar from './components/NavigationBar.vue'
 
 export default {
   name: 'App',
   components: {
     NavigationBar
+  },
+  created () {
+    this.getUsers('vic-ong-2019')
+    this.getInterests()
+    this.getProjects()
+  },
+  methods: {
+    ...mapActions('users', {
+      getUsers: 'getUsers'
+    }),
+    ...mapActions('interests', {
+      getInterests: 'getInterests'
+    }),
+    ...mapActions('projects', {
+      getProjects: 'getProjects'
+    })
   }
 }
 </script>

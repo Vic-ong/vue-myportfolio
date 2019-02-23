@@ -34,9 +34,9 @@
 <script>
 export default {
   props: {
-    type: {
-      type: String,
-      default: 'footer'
+    small: {
+      type: Boolean,
+      default: false
     },
     showDivider: {
       type: Boolean,
@@ -56,48 +56,26 @@ export default {
     currentYear () {
       const today = new Date()
       return today.getFullYear()
-    }
-  },
-  method: {
-    containerStyle () {
-      if (this.type === 'footer') {
-        return {
-          paddingTop: '70px',
-          paddingBottom: '30px'
-        }
-      } else if (this.type === 'small') {
-        return {
-          paddingTop: '50px',
-          paddingBottom: '10px'
-        }
-      }
     },
     spacingBetweenIcons () {
-      if (this.type === 'footer') {
-        return {
-          'pl-4': true,
-          'pr-4': true
-        }
-      } else if (this.type === 'small') {
-        return {
-          'pl-3': true,
-          'pr-3': true
-        }
+      let pl = `pl-${this.small ? '3' : '4'}`
+      let pr = `pr-${this.small ? '3' : '4'}`
+      return {
+        [pl]: true,
+        [pr]: true
+      }
+    },
+    containerStyle () {
+      return {
+        paddingTop: `${this.small ? '50' : '70'}px`,
+        paddingBottom: `${this.small ? '10' : '30'}px`
       }
     },
     iconSize () {
-      if (this.type === 'footer') {
-        return 35
-      } else if (this.type === 'small') {
-        return 25
-      }
+      return this.small ? 25 : 35
     },
     textClass () {
-      if (this.type === 'footer') {
-        return 'footer-text'
-      } else if (this.type === 'small') {
-        return 'small-text'
-      }
+      return `${this.small ? 'small' : 'footer'}-text`
     }
   }
 }

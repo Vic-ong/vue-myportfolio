@@ -1,7 +1,7 @@
 <template>
   <v-container :class="`${$vuetify.breakpoint.xs ? '' : 'main-container'}`" class="about-page-offset">
     <Biography />
-    <Contact showDivider type="small" />
+    <Contact showDivider small />
   </v-container>
 </template>
 

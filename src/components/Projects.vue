@@ -61,17 +61,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'projects',
   props: {
     numberOfProjects: Number
-  },
-  created () {
-    if (this.projectsTop.length === 0) {
-      this.getProjects()
-    }
   },
   data () {
     return {
@@ -90,11 +85,6 @@ export default {
     projectsTop () {
       return this.projectsTopFunc(this.numberOfProjects)
     }
-  },
-  methods: {
-    ...mapActions('projects', {
-      getProjects: 'getProjects'
-    })
   }
 }
 </script>
