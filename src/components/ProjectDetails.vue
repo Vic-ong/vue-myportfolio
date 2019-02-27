@@ -26,6 +26,22 @@
         </v-layout>
       </v-flex>
     </div>
+    <div :style="contentGroupStyle">
+      <v-flex>
+        <v-layout row wrap
+          v-for="(content, index) in project.contents"
+          v-bind:key="index"
+          :style="contentStyle"
+        >
+          <v-flex xs6>
+            <p>{{ content.description }}</p>
+          </v-flex>
+          <v-flex xs6>
+            <v-img contain :src="content.image"></v-img>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </div>
   </div>
 </template>
 
@@ -48,7 +64,18 @@ export default {
   computed: {
     ...mapGetters('projects', {
       project: 'project'
-    })
+    }),
+    contentGroupStyle () {
+      return {
+        marginTop: '50px',
+        fontSize: '14px'
+      }
+    },
+    contentStyle () {
+      return {
+        marginTop: '50px'
+      }
+    }
   },
   methods: {
     ...mapActions('projects', {
